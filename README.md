@@ -1,1 +1,2 @@
-# Group8_mini-project_aspirasi-lapor-desa
+# Portal Kanal Aspirasi dan Lapor Desa
+> **Mini Project:** Perancangan Database PostgreSQL & Pembuatan REST API dengan Express.js

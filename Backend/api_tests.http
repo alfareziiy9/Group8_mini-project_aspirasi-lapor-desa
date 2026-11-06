@@ -1,0 +1,76 @@
+### ============================================================================
+### PENGUJIAN REST API - PORTAL ASPIRASI & LAPOR DESA
+### Gunakan VS Code extension "REST Client" atau salin data ini ke Postman
+### Base URL: http://localhost:5000
+### ============================================================================
+
+@baseUrl = http://localhost:5000
+
+### 1. Test Server Berjalan
+GET {{baseUrl}}/
+Accept: application/json
+
+### 2. Test Koneksi PostgreSQL
+GET {{baseUrl}}/api/db-test
+Accept: application/json
+
+### ============================================================================
+### REST API: LAPORAN (REPORTS) - Sesuai Ketentuan Tugas
+### ============================================================================
+
+### 3. GET => Dapatkan semua data laporan
+GET {{baseUrl}}/api/reports
+Accept: application/json
+
+### 4. GET => Dapatkan data laporan berdasarkan parameter status (opsional)
+GET {{baseUrl}}/api/reports?status=Diproses
+Accept: application/json
+
+### 5. GET => Dapatkan data laporan berdasarkan ID pada parameter URL
+GET {{baseUrl}}/api/reports/1
+Accept: application/json
+
+### 6. POST => Membuat data baru disimpan ke Database
+POST {{baseUrl}}/api/reports
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "category_id": 1,
+  "title": "Jembatan Kayu Dusun Utara Lapuk dan Membahayakan",
+  "description": "Kayu penahan jembatan di Dusun Utara sudah banyak yang lapuk, mohon perbaikan segera sebelum musim hujan.",
+  "location": "Jembatan Kali Kulon Dusun Utara"
+}
+
+### 7. PUT => Memperbarui data laporan (contoh: update status dan catatan)
+PUT {{baseUrl}}/api/reports/1
+Content-Type: application/json
+
+{
+  "status": "Selesai"
+}
+
+### 8. DELETE => Menghapus data laporan berdasarkan ID
+DELETE {{baseUrl}}/api/reports/3
+Accept: application/json
+
+### ============================================================================
+### REST API: KATEGORI (CATEGORIES)
+### ============================================================================
+
+### 9. GET => Dapatkan semua kategori
+GET {{baseUrl}}/api/categories
+Accept: application/json
+
+### 10. GET => Dapatkan kategori berdasarkan ID
+GET {{baseUrl}}/api/categories/1
+Accept: application/json
+
+### 11. POST => Tambah kategori baru
+POST {{baseUrl}}/api/categories
+Content-Type: application/json
+
+{
+  "name": "Kesehatan",
+  "description": "Laporan layanan posyandu dan kesehatan masyarakat desa"
+}

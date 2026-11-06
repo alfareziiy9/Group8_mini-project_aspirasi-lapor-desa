@@ -1,0 +1,41 @@
+// ============================================================================
+// DBDiagram.io Markup (DBML)
+// Proyek: Portal Kanal Aspirasi dan Lapor Desa
+// Anda dapat langsung copy-paste kode ini ke editor https://dbdiagram.io
+// ============================================================================
+
+Table users {
+  id int [pk, increment]
+  name varchar(100) [not null]
+  email varchar(100) [unique, not null]
+  phone varchar(20)
+  role varchar(20) [default: 'warga'] // warga, admin, kepala_desa
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table categories {
+  id int [pk, increment]
+  name varchar(50) [not null]
+  description text
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table reports {
+  id int [pk, increment]
+  user_id int [ref: > users.id]
+  category_id int [ref: > categories.id]
+  title varchar(200) [not null]
+  description text [not null]
+  location varchar(255)
+  status varchar(30) [default: 'Menunggu'] // Menunggu, Diproses, Selesai, Ditolak
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table report_responses {
+  id int [pk, increment]
+  report_id int [ref: > reports.id]
+  admin_id int [ref: > users.id]
+  response text [not null]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
